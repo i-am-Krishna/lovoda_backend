@@ -51,4 +51,17 @@ cartRouter.patch("/:id",async(req,res)=>{
     }
 })
 
+
+cartRouter.delete("/:id",async(req,res)=>{
+    const id = req.params.id;
+    try{
+        deleteCart = await CartModel.findByIdAndDelete(id);
+        return res.status(200).json({message:"Successfully Deleted"});
+    }
+    catch(err){
+        return res.status(404).json({message:"Cart not deleted"});
+    }
+
+})
+
 module.exports = cartRouter;
